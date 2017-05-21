@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 import json
 import base64
-from models import *
+from .models import *
 import random,hashlib
 
 def test(request):
@@ -113,8 +113,8 @@ def register(request):
                 return HttpResponse(json.dumps(ret), content_type="application/json")
             try:
                 data = Users.objects.create(username=username,password=hashlib.sha512(password).hexdigest(),name=name,email=email,created=datetime.datetime.now().isoformat())
-            except Exception,e:
-                print e
+            except Exception as e:
+                print(e)
                 ret['success'] = 'false'
                 ret['message'] = 'internal error'
                 return HttpResponse(json.dumps(ret), content_type="application/json")

@@ -1,5 +1,5 @@
 __author__ = 'chowmean'
-from models import *
+from .models import *
 
 
 
